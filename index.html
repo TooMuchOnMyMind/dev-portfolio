@@ -6,7 +6,6 @@
     <title>Zixx - Roblox Developer Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -704,8 +703,8 @@
                     <input type="text" id="name" name="name" required>
                 </div>
                 <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
+                    <label for="discord">Discord Username</label>
+                    <input type="text" id="discord" name="discord" placeholder="username#1234" required>
                 </div>
                 <div class="form-group">
                     <label for="message">Message</label>
@@ -790,10 +789,8 @@
             }
         }
 
-         // Initialize EmailJS
-         (function() {
-             emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS public key
-         })();
+         // Discord webhook URL - Replace with your Discord webhook URL
+         const DISCORD_WEBHOOK_URL = 'YOUR_DISCORD_WEBHOOK_URL';
 
          // Contact form handling
          document.getElementById('contactForm').addEventListener('submit', function(e) {
@@ -802,11 +799,11 @@
              // Get form data
              const formData = new FormData(this);
              const name = formData.get('name');
-             const email = formData.get('email');
+             const discord = formData.get('discord');
              const message = formData.get('message');
              
              // Simple validation
-             if (!name || !email || !message) {
+             if (!name || !discord || !message) {
                  alert('Please fill in all fields.');
                  return;
              }
@@ -816,26 +813,59 @@
              submitButton.textContent = 'Sending...';
              submitButton.disabled = true;
              
-             // EmailJS template parameters
-             const templateParams = {
-                 from_name: name,
-                 from_email: email,
-                 message: message,
-                 to_name: 'Zixx'
+             // Create Discord embed message
+             const discordMessage = {
+                 embeds: [{
+                     title: "🎮 New Portfolio Contact",
+                     color: 0x4FC3F7, // Electric blue color
+                     fields: [
+                         {
+                             name: "👤 Name",
+                             value: name,
+                             inline: true
+                         },
+                         {
+                             name: "💬 Discord",
+                             value: discord,
+                             inline: true
+                         },
+                         {
+                             name: "📝 Message",
+                             value: message,
+                             inline: false
+                         }
+                     ],
+                     timestamp: new Date().toISOString(),
+                     footer: {
+                         text: "Portfolio Contact Form"
+                     }
+                 }]
              };
              
-             // Send email using EmailJS
-             emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
-                 .then(function(response) {
-                     alert('Thank you for your message! I\'ll get back to you soon.');
+             // Send to Discord webhook
+             fetch(DISCORD_WEBHOOK_URL, {
+                 method: 'POST',
+                 headers: {
+                     'Content-Type': 'application/json',
+                 },
+                 body: JSON.stringify(discordMessage)
+             })
+             .then(response => {
+                 if (response.ok) {
+                     alert('Thank you for your message! I\'ll get back to you soon on Discord.');
                      document.getElementById('contactForm').reset();
-                     submitButton.textContent = originalText;
-                     submitButton.disabled = false;
-                 }, function(error) {
-                     alert('Sorry, there was an error sending your message. Please try again or contact me directly.');
-                     submitButton.textContent = originalText;
-                     submitButton.disabled = false;
-                 });
+                 } else {
+                     throw new Error('Failed to send message');
+                 }
+             })
+             .catch(error => {
+                 alert('Sorry, there was an error sending your message. Please try again or contact me directly on Discord.');
+                 console.error('Error:', error);
+             })
+             .finally(() => {
+                 submitButton.textContent = originalText;
+                 submitButton.disabled = false;
+             });
          });
 
         // Mouse following effect for buttons
