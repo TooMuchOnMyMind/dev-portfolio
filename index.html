@@ -14,35 +14,26 @@
         }
 
          :root {
-             --primary-bg: #0a0a0a;
-             --secondary-bg: #1a1a1a;
-             --accent-white: #FFFFFF;
-             --accent-gray: #E0E0E0;
+             --primary-bg: #1E1E2F;
+             --secondary-bg: #2A2A3E;
+             --accent-blue: #4FC3F7;
+             --accent-blue-dark: #29B6F6;
              --text-white: #FFFFFF;
-             --text-gray: #CCCCCC;
-             --gradient: linear-gradient(135deg, #FFFFFF 0%, #E0E0E0 100%);
-             --gradient-dark: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
-             --glow: 0 0 20px rgba(255, 255, 255, 0.3);
-             --glow-strong: 0 0 30px rgba(255, 255, 255, 0.6);
-             --glow-blue: 0 0 20px rgba(0, 150, 255, 0.4);
+             --text-gray: #B0B0B0;
+             --text-light: #E0E0E0;
+             --gradient: linear-gradient(135deg, #4FC3F7 0%, #29B6F6 100%);
+             --gradient-dark: linear-gradient(135deg, #2A2A3E 0%, #1E1E2F 100%);
+             --shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+             --shadow-hover: 0 8px 30px rgba(79, 195, 247, 0.2);
+             --border: rgba(79, 195, 247, 0.2);
          }
 
         body {
             font-family: 'Roboto', sans-serif;
             background: var(--primary-bg);
-            background-image: 
-                radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.03) 0%, transparent 50%);
             color: var(--text-white);
             overflow-x: hidden;
             line-height: 1.6;
-            animation: backgroundShift 20s ease-in-out infinite;
-        }
-
-        @keyframes backgroundShift {
-            0%, 100% { background-position: 0% 0%, 100% 100%, 50% 50%; }
-            50% { background-position: 100% 100%, 0% 0%, 25% 75%; }
         }
 
         /* Smooth scrolling */
@@ -55,18 +46,12 @@
              position: fixed;
              top: 0;
              width: 100%;
-             background: rgba(10, 10, 10, 0.95);
-             backdrop-filter: blur(15px);
+             background: rgba(30, 30, 47, 0.95);
+             backdrop-filter: blur(10px);
              z-index: 1000;
              padding: 1rem 0;
              transition: all 0.3s ease;
-             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-             animation: navbarGlow 3s ease-in-out infinite alternate;
-         }
-
-         @keyframes navbarGlow {
-             0% { box-shadow: 0 2px 20px rgba(255, 255, 255, 0.1); }
-             100% { box-shadow: 0 2px 30px rgba(255, 255, 255, 0.2); }
+             border-bottom: 1px solid var(--border);
          }
 
         .nav-container {
@@ -82,8 +67,7 @@
              font-family: 'Poppins', sans-serif;
              font-size: 1.5rem;
              font-weight: 700;
-             color: var(--accent-white);
-             text-shadow: var(--glow);
+             color: var(--accent-blue);
          }
 
         .nav-links {
@@ -98,17 +82,10 @@
              font-weight: 500;
              transition: all 0.3s ease;
              position: relative;
-             animation: navLinkFloat 2s ease-in-out infinite;
-         }
-
-         @keyframes navLinkFloat {
-             0%, 100% { transform: translateY(0px); }
-             50% { transform: translateY(-2px); }
          }
 
          .nav-links a:hover {
-             color: var(--accent-white);
-             text-shadow: var(--glow);
+             color: var(--accent-blue);
          }
 
          .nav-links a::after {
@@ -118,8 +95,7 @@
              left: 0;
              width: 0;
              height: 2px;
-             background: var(--accent-white);
-             box-shadow: var(--glow);
+             background: var(--accent-blue);
              transition: width 0.3s ease;
          }
 
@@ -136,16 +112,7 @@
              text-align: center;
              position: relative;
              background: var(--primary-bg);
-             background-image: 
-                 radial-gradient(circle at 30% 70%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-                 radial-gradient(circle at 70% 30%, rgba(255, 255, 255, 0.08) 0%, transparent 50%);
              overflow: hidden;
-             animation: heroPulse 8s ease-in-out infinite;
-         }
-
-         @keyframes heroPulse {
-             0%, 100% { background-size: 100% 100%, 100% 100%; }
-             50% { background-size: 120% 120%, 80% 80%; }
          }
 
         .particles {
@@ -161,10 +128,9 @@
              position: absolute;
              width: 4px;
              height: 4px;
-             background: var(--accent-white);
+             background: var(--accent-blue);
              border-radius: 50%;
-             opacity: 0.8;
-             box-shadow: var(--glow);
+             opacity: 0.6;
              animation: float 6s infinite ease-in-out;
          }
 
@@ -188,51 +154,35 @@
              -webkit-background-clip: text;
              -webkit-text-fill-color: transparent;
              background-clip: text;
-             animation: fadeInUp 1s ease-out, titleGlow 3s ease-in-out infinite alternate;
-             text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
-         }
-
-         @keyframes titleGlow {
-             0% { filter: brightness(1) drop-shadow(0 0 20px rgba(255, 255, 255, 0.3)); }
-             100% { filter: brightness(1.2) drop-shadow(0 0 40px rgba(255, 255, 255, 0.6)); }
+             animation: fadeInUp 1s ease-out;
          }
 
          .hero .subtitle {
              font-size: 1.5rem;
              color: var(--text-gray);
              margin-bottom: 2rem;
-             animation: fadeInUp 1s ease-out 0.2s both, subtitleFloat 4s ease-in-out infinite;
-         }
-
-         @keyframes subtitleFloat {
-             0%, 100% { transform: translateY(0px); }
-             50% { transform: translateY(-5px); }
+             animation: fadeInUp 1s ease-out 0.2s both;
          }
 
          .cta-button {
              display: inline-block;
              padding: 1rem 2rem;
              background: var(--gradient);
-             color: var(--primary-bg);
+             color: var(--text-white);
              text-decoration: none;
              border-radius: 50px;
              font-weight: 600;
              font-size: 1.1rem;
              transition: all 0.3s ease;
-             animation: fadeInUp 1s ease-out 0.4s both, buttonPulse 2s ease-in-out infinite;
+             animation: fadeInUp 1s ease-out 0.4s both;
              position: relative;
              overflow: hidden;
-             border: 2px solid rgba(255, 255, 255, 0.3);
-         }
-
-         @keyframes buttonPulse {
-             0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(255, 255, 255, 0.3); }
-             50% { transform: scale(1.05); box-shadow: 0 0 30px rgba(255, 255, 255, 0.5); }
+             box-shadow: var(--shadow);
          }
 
          .cta-button:hover {
              transform: translateY(-3px);
-             box-shadow: var(--glow-strong);
+             box-shadow: var(--shadow-hover);
          }
 
         .cta-button::before {
@@ -278,17 +228,6 @@
              margin-bottom: 3rem;
              color: var(--text-white);
              position: relative;
-             animation: titleSlide 1s ease-out, titleShimmer 3s ease-in-out infinite;
-         }
-
-         @keyframes titleSlide {
-             0% { transform: translateX(-100px); opacity: 0; }
-             100% { transform: translateX(0); opacity: 1; }
-         }
-
-         @keyframes titleShimmer {
-             0%, 100% { text-shadow: 0 0 20px rgba(255, 255, 255, 0.3); }
-             50% { text-shadow: 0 0 40px rgba(255, 255, 255, 0.6), 0 0 60px rgba(255, 255, 255, 0.3); }
          }
 
          .section-title::after {
@@ -301,26 +240,11 @@
              height: 4px;
              background: var(--gradient);
              border-radius: 2px;
-             animation: underlineGlow 2s ease-in-out infinite alternate;
-         }
-
-         @keyframes underlineGlow {
-             0% { box-shadow: 0 0 10px rgba(255, 255, 255, 0.3); }
-             100% { box-shadow: 0 0 20px rgba(255, 255, 255, 0.6); }
          }
 
         /* About Section */
          .about {
              background: var(--secondary-bg);
-             background-image: 
-                 radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.03) 0%, transparent 50%),
-                 radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.02) 0%, transparent 50%);
-             animation: sectionFloat 6s ease-in-out infinite;
-         }
-
-         @keyframes sectionFloat {
-             0%, 100% { background-position: 0% 0%, 100% 100%; }
-             50% { background-position: 100% 100%, 0% 0%; }
          }
 
         .about-content {
@@ -355,9 +279,9 @@
         }
 
          @keyframes pulse {
-             0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7); }
-             70% { box-shadow: 0 0 0 20px rgba(255, 255, 255, 0); }
-             100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+             0% { box-shadow: 0 0 0 0 rgba(79, 195, 247, 0.7); }
+             70% { box-shadow: 0 0 0 20px rgba(79, 195, 247, 0); }
+             100% { box-shadow: 0 0 0 0 rgba(79, 195, 247, 0); }
          }
 
         /* Projects Section */
@@ -375,18 +299,13 @@
              transition: all 0.3s ease;
              position: relative;
              transform-style: preserve-3d;
-             border: 1px solid rgba(255, 255, 255, 0.1);
-             animation: cardFloat 4s ease-in-out infinite;
-         }
-
-         @keyframes cardFloat {
-             0%, 100% { transform: translateY(0px) rotateX(0deg); }
-             50% { transform: translateY(-5px) rotateX(2deg); }
+             border: 1px solid var(--border);
+             box-shadow: var(--shadow);
          }
 
          .project-card:hover {
              transform: translateY(-10px) rotateX(5deg);
-             box-shadow: var(--glow-strong);
+             box-shadow: var(--shadow-hover);
          }
 
         .project-image {
@@ -434,35 +353,23 @@
              display: inline-block;
              padding: 0.8rem 1.5rem;
              background: transparent;
-             color: var(--accent-white);
-             border: 2px solid var(--accent-white);
+             color: var(--accent-blue);
+             border: 2px solid var(--accent-blue);
              text-decoration: none;
              border-radius: 25px;
              font-weight: 500;
              transition: all 0.3s ease;
-             box-shadow: var(--glow);
-             animation: buttonGlow 3s ease-in-out infinite;
-         }
-
-         @keyframes buttonGlow {
-             0%, 100% { box-shadow: 0 0 20px rgba(255, 255, 255, 0.3); }
-             50% { box-shadow: 0 0 30px rgba(255, 255, 255, 0.5); }
          }
 
          .project-button:hover {
-             background: var(--accent-white);
-             color: var(--primary-bg);
+             background: var(--accent-blue);
+             color: var(--text-white);
              transform: translateY(-2px);
-             box-shadow: var(--glow-strong);
          }
 
         /* Skills Section */
          .skills {
              background: var(--secondary-bg);
-             background-image: 
-                 radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.02) 0%, transparent 50%),
-                 radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.03) 0%, transparent 50%);
-             animation: sectionFloat 8s ease-in-out infinite reverse;
          }
 
          .skills-grid {
@@ -482,31 +389,24 @@
              border-radius: 15px;
              transition: all 0.3s ease;
              border: 2px solid transparent;
-             animation: skillFloat 3s ease-in-out infinite;
-         }
-
-         @keyframes skillFloat {
-             0%, 100% { transform: translateY(0px); }
-             50% { transform: translateY(-3px); }
+             box-shadow: var(--shadow);
          }
 
          .skill-item:hover {
-             border-color: var(--accent-white);
+             border-color: var(--accent-blue);
              transform: translateY(-5px);
-             box-shadow: var(--glow);
+             box-shadow: var(--shadow-hover);
          }
 
          .skill-icon {
              font-size: 3rem;
-             color: var(--accent-white);
+             color: var(--accent-blue);
              margin-bottom: 1rem;
              transition: all 0.3s ease;
-             text-shadow: var(--glow);
          }
 
          .skill-item:hover .skill-icon {
              transform: scale(1.1);
-             text-shadow: var(--glow-strong);
          }
 
         .skill-name {
@@ -516,14 +416,15 @@
         }
 
         /* Contact Section */
-        .contact-form {
-            max-width: 600px;
-            margin: 0 auto;
-            background: var(--secondary-bg);
-            padding: 3rem;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
+         .contact-form {
+             max-width: 600px;
+             margin: 0 auto;
+             background: var(--secondary-bg);
+             padding: 3rem;
+             border-radius: 20px;
+             box-shadow: var(--shadow);
+             border: 1px solid var(--border);
+         }
 
         .form-group {
             margin-bottom: 2rem;
@@ -551,8 +452,8 @@
          .form-group input:focus,
          .form-group textarea:focus {
              outline: none;
-             border-color: var(--accent-white);
-             box-shadow: var(--glow);
+             border-color: var(--accent-blue);
+             box-shadow: 0 0 0 3px rgba(79, 195, 247, 0.1);
          }
 
         .form-group textarea {
@@ -564,39 +465,26 @@
              width: 100%;
              padding: 1rem;
              background: var(--gradient);
-             color: var(--primary-bg);
+             color: var(--text-white);
              border: none;
              border-radius: 10px;
              font-size: 1.1rem;
              font-weight: 600;
              cursor: pointer;
              transition: all 0.3s ease;
-             animation: submitPulse 2s ease-in-out infinite;
-         }
-
-         @keyframes submitPulse {
-             0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(255, 255, 255, 0.3); }
-             50% { transform: scale(1.02); box-shadow: 0 0 30px rgba(255, 255, 255, 0.5); }
+             box-shadow: var(--shadow);
          }
 
          .submit-button:hover {
              transform: translateY(-2px);
-             box-shadow: var(--glow-strong);
+             box-shadow: var(--shadow-hover);
          }
 
         /* Footer */
          .footer {
              background: var(--secondary-bg);
-             background-image: 
-                 radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
              padding: 3rem 0 2rem;
              text-align: center;
-             animation: footerGlow 4s ease-in-out infinite;
-         }
-
-         @keyframes footerGlow {
-             0%, 100% { background-position: 50% 0%; }
-             50% { background-position: 50% 20%; }
          }
 
         .footer-links {
@@ -613,8 +501,7 @@
         }
 
          .footer-links a:hover {
-             color: var(--accent-white);
-             text-shadow: var(--glow);
+             color: var(--accent-blue);
          }
 
         .footer-text {
@@ -697,11 +584,10 @@
          .spinner {
              width: 50px;
              height: 50px;
-             border: 3px solid rgba(255, 255, 255, 0.3);
-             border-top: 3px solid var(--accent-white);
+             border: 3px solid rgba(79, 195, 247, 0.3);
+             border-top: 3px solid var(--accent-blue);
              border-radius: 50%;
              animation: spin 1s linear infinite;
-             box-shadow: var(--glow);
          }
 
         @keyframes spin {
@@ -955,7 +841,7 @@
              const discordMessage = {
                  embeds: [{
                      title: "🎮 New Portfolio Contact",
-                     color: 0xFFFFFF, // White color for black/white theme
+                     color: 0x4FC3F7, // Electric blue color
                      fields: [
                          {
                              name: "👤 Name",
